@@ -1,0 +1,28 @@
+{
+  "name": "whatyearisit",
+  "version": "0.0.0",
+  "description": "All the things we should do or have or know by now.",
+  "main": "cron.js",
+  "scripts": {
+    "start": "node cron.js"
+  },
+  "dependencies": {
+    "cron": "^1.1.0",
+    "mkdirp": "^0.5.1",
+    "twit": "^2.2.4"
+  },
+  "engines": {
+    "node": "4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rvinluan/whatyearisit-rewrite"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "twitter"
+  ],
+  "author": "Robert Vinluan",
+  "license": "MIT"
+}
