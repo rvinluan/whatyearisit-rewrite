@@ -8,9 +8,6 @@ var theMonth = new Date().getMonth();
 var query = '%22it%27s%20' + theYear + "%22";
 var logObject = {};
 
-//in_reply_to_status_id
-//retweeted_status
-
 function tweetContainsKeywords(tweet) {
   var keywords = ["still", "yet", "why"];
   var normalizedText = tweet.text.toLowerCase();
@@ -33,9 +30,9 @@ function isReply(t) {
 
 function isRetweet(t) {
   return (
-    t.retweeted_status                                        //twitter recognizes this as a retweet
-    || t.retweeted                                             //this account has already retweeted this tweet
-    || t.text.substring(0, 2).toLowerCase() === "rt"    //this tweet starts with RT
+    t.retweeted_status                                       //twitter recognizes this as a retweet
+    || t.retweeted                                            //this account has already retweeted this tweet
+    || t.text.substring(0, 2).toLowerCase() === "rt"   //this tweet starts with RT
   );
 }
 
@@ -63,7 +60,6 @@ function run() {
       logObject.tweetID = theTweet.id_str;
       logObject.text = theTweet.text;
       logObject.user =  theTweet.user.screen_name;
-      console.log(logObject);
 
       //retweet the tweet
       // T.post('statuses/retweet/:id', { id: theTweet.id }, function (err, data, response) {
@@ -78,7 +74,6 @@ function run() {
             //file or directory doesn't exist
             mkdirp(filepath, function(err) {
               if(err) console.log("error making file:" + err);
-              console.log('created directory');
               var writeArray = JSON.stringify([logObject]);
               fs.writeFile(filepath + filename, writeArray, (err) => console.log(err ? err : "wrote to a new file"));
             })
@@ -101,8 +96,8 @@ module.exports = {
 }
 
 //tests
-console.log( tweetContainsKeywords( {text: "It's 2015 why is racism still a thing"} ) );
-console.log( isReply( {text: "@robertvinluan hey"} ));
-console.log( isReply( {text: ".@robertvinluan hey"} ));
-console.log( isRetweet( {text: "RT @robertvinluan hey"} ));
-run();
+// console.log( tweetContainsKeywords( {text: "It's 2015 why is racism still a thing"} ) );
+// console.log( isReply( {text: "@robertvinluan hey"} ));
+// console.log( isReply( {text: ".@robertvinluan hey"} ));
+// console.log( isRetweet( {text: "RT @robertvinluan hey"} ));
+// run();
