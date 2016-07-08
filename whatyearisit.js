@@ -78,7 +78,6 @@ function run() {
       var filename = theMonth+'.json';
       fs.readFile(filepath + filename, function(err, data){
         if(err) {
-          if(err.errno == -2) {
             //file or directory doesn't exist
             mkdirp(filepath, function(err) {
               if(err) console.log("error making file:" + err);
@@ -87,9 +86,6 @@ function run() {
                 if(err) console.log(err);
               });
             })
-          } else {
-            console.log("error reading:" + err);
-          }
         } else {
           var readArray = JSON.parse(data);
           readArray.push(logObject);
@@ -111,4 +107,4 @@ module.exports = {
 // console.log( isReply( {text: "@robertvinluan hey"} ));
 // console.log( isReply( {text: ".@robertvinluan hey"} ));
 // console.log( isRetweet( {text: "RT @robertvinluan hey"} ));
-// run();
+run();
