@@ -107,4 +107,4 @@ module.exports = {
 // console.log( isReply( {text: "@robertvinluan hey"} ));
 // console.log( isReply( {text: ".@robertvinluan hey"} ));
 // console.log( isRetweet( {text: "RT @robertvinluan hey"} ));
-run();
+// run();
