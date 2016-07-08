@@ -75,7 +75,9 @@ function run() {
             mkdirp(filepath, function(err) {
               if(err) console.log("error making file:" + err);
               var writeArray = JSON.stringify([logObject]);
-              fs.writeFile(filepath + filename, writeArray, (err) => console.log(err ? err : "wrote to a new file"));
+              fs.writeFile(filepath + filename, writeArray, function (err) {
+                if(err) console.log(err);
+              });
             })
           } else {
             console.log("error reading:" + err);
@@ -84,7 +86,9 @@ function run() {
           var readArray = JSON.parse(data);
           console.log(readArray);
           readArray.push(logObject);
-          fs.writeFile(filepath + filename, JSON.stringify(readArray), (err) => console.log(err ? err : "wrote to an existing file"));
+          fs.writeFile(filepath + filename, JSON.stringify(readArray), function (err) {
+            if(err) console.log(err);
+          });
         }
       });
     }
