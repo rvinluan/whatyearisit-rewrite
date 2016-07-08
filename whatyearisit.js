@@ -37,7 +37,7 @@ function isRetweet(t) {
 }
 
 function run() {
-  T.get('search/tweets', { q: query, count: 100, lang: 'en' }, function(err, data, response) {
+  T.get('search/tweets', { q: query, count: 20, lang: 'en' }, function(err, data, response) {
     if(err) {
       console.log(err);
     } else {

@@ -1,7 +1,7 @@
 var CronJob = require('cron').CronJob;
 
-var LikeHashtags = require('./whatyearisit');
+var Wyii = require('./whatyearisit');
 
-new CronJob('00 00 * * * *', function() {
-  LikeHashtags.run();
+new CronJob('00 00 */5 * * *', function() {
+  Wyii.run();
 }, null, true, 'America/New_York');
