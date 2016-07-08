@@ -37,7 +37,7 @@ function isRetweet(t) {
 }
 
 function run() {
-  T.get('search/tweets', { q: query, count: 20, lang: 'en' }, function(err, data, response) {
+  T.get('search/tweets', { q: query, count: 100, lang: 'en' }, function(err, data, response) {
     if(err) {
       console.log(err);
     } else {
@@ -62,8 +62,16 @@ function run() {
       logObject.user =  theTweet.user.screen_name;
 
       //retweet the tweet
-      // T.post('statuses/retweet/:id', { id: theTweet.id }, function (err, data, response) {
-      // })
+      T.post('statuses/retweet/:id', { id: theTweet.id_str }, function (err, data, response) {
+        if(err) {
+          console.log("error tweeting:" + err);
+        } else {
+          console.log("successfully tweeted!");
+          console.log("tweet text::");
+          console.log(theTweet.text);
+          console.log("---------");
+        }
+      })
 
       //log it to the filesystem
       var filepath = __dirname + '/WhatYearIsIt-LOGS/'+theYear+'/';
@@ -84,7 +92,6 @@ function run() {
           }
         } else {
           var readArray = JSON.parse(data);
-          console.log(readArray);
           readArray.push(logObject);
           fs.writeFile(filepath + filename, JSON.stringify(readArray), function (err) {
             if(err) console.log(err);
