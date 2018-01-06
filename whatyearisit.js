@@ -3,11 +3,6 @@ var T = new Twit(require('./config.js'));
 var fs = require('fs');
 var mkdirp = require('mkdirp');
 
-var theYear = new Date().getFullYear();
-var theMonth = new Date().getMonth();
-var query = '%22it%27s%20' + theYear + "%22";
-var logObject = {};
-
 function tweetContainsKeywords(tweet) {
   var keywords = ["still", "yet", "why"];
   var normalizedText = tweet.text.toLowerCase();
@@ -37,6 +32,11 @@ function isRetweet(t) {
 }
 
 function run() {
+  var theYear = new Date().getFullYear();
+  var theMonth = new Date().getMonth();
+  var query = '%22it%27s%20' + theYear + "%22";
+  var logObject = {};
+
   T.get('search/tweets', { q: query, count: 100, lang: 'en' }, function(err, data, response) {
     if(err) {
       console.log(err);
